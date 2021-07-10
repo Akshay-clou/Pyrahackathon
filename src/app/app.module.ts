@@ -11,7 +11,7 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { AddressComponent } from './address/address.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AccountsComponent } from './accounts/accounts.component';
-
+import { DataService } from "./data.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +31,7 @@ import { AccountsComponent } from './accounts/accounts.component';
     AppRoutingModule,
 
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,44 @@
-<p>address works!</p>
+    <div class="card mt-2" style="height: 100vh;">
+        <div class="card-header text-center">
+            <h3>Add Address</h3>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="addressForm" (submit)="onSubmit()">
+                <div formArrayName="address">
+            <div class="row mt-3" *ngFor="let data of address.controls; let i=index">
+                <ng-container [formGroupName]='i'>
+                <div class="col-3">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" cols="50" placeholder="Address" formControlName="address"></textarea>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" cols="50" formControlName="pincode" placeholder="Pincode"></textarea>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" cols="50" formControlName="landmark" placeholder="Landmark"></textarea>
+                    </div>
+                </div>
+                <div class="col-3">
+                <button class="btn btn-sm btn-primary"  *ngIf="i==address.controls.length-1 ;else delete" (click)="addAddress()">Add</button>
+                <ng-template #delete>
+                    &nbsp;
+                  
+                    <button class="btn btn-sm btn-danger" (click)="removeAddress()">delete</button>
+
+               </ng-template>
+                </div>
+                </ng-container>
+            </div>
+            </div>
+           <div class="text-center mt-5">
+            <button type="submit" class="btn btn-success">Submit</button>
+           </div>
+                
+            
+            </form>
+        </div>
+    </div>
