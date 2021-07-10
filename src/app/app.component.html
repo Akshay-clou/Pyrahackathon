@@ -1,26 +1,29 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">ClothMarket</a>
+    <div class="row">
+     
+     <a class="navbar-brand" routerLink="/">  <img src="assets/images/icon1.jpg" alt="" width="50px" height="50px"> ClothMarket</a></div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0  " style="margin-left: 400px;" >
         <li class="nav-item px-3">
-          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+          <a class="nav-link active" aria-current="page" routerLink="/"><i class="fa fa-home fa-lg" aria-hidden="true"></i> Home</a>
+        </li>
+      
+        <li class=" px-3">
+          <a class="nav-link" routerLink="/view-cart"> <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>  &nbsp; Cart</a>
         </li>
         <li class=" px-3">
-          <a class="nav-link" routerLink="order-summary">Orders</a>
+          <a class="nav-link " routerLink="/address"><i class="fa fa-address-book fa-lg" aria-hidden="true"></i>&nbsp; Address</a>
         </li>
         <li class=" px-3">
-          <a class="nav-link" routerLink="/view-cart">View Cart</a>
+          <a class="nav-link" routerLink="order-summary"><i class="fa fa-list fa-lg" aria-hidden="true"></i>   &nbsp; OrdersSummary </a>
         </li>
         <li class=" px-3">
-          <a class="nav-link " routerLink="/address">Address</a>
-        </li>
-        <li class=" px-3">
-          <a class="nav-link " routerLink="/account">Account</a>
+          <a class="nav-link " routerLink="/account"><i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp; Account</a>
         </li>
       </ul>
     </div>
