@@ -1,1 +1,53 @@
-<p>product-list works!</p>
+<div class="card mt-2" style="height: 100vh;">
+
+<div class="card-header ">
+    <div class="row">
+        <div class="col-2">
+            <div class="form-group">
+                <select class="form-control "  (change)="categoryFilter($event.target.value)"  >
+                    <option class="option" value="0" >Select Categories</option>
+                    <option class="option" value="1" >All</option>
+                    <option class="option" value="2" >Men</option>
+                    <option class="option" value="3" >Women</option>
+                    <option class="option" value="4" >Kids</option>
+
+
+                  </select>     
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+            <input type="search" class="form-control" [(ngModel)]="searchText" placeholder="Search Products" >
+            </div>
+        </div>
+        <div class="col-6 text-center"><h3>Products List</h3></div>
+    </div>
+    
+</div>
+<div class="card-body">
+    
+    <div class="row mt-1" tyle="display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;">
+        <div class="col-2 mt-2" *ngFor="let item of productList| filter: searchText;let i=index;">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" [src]="item.productimage" height="250px" alt="Card image cap">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mt-3 px-2">
+                        <h4>{{item.productname}} </h4> <span class="heart"><i class="fa fa-heart"></i></span>
+                    </div>
+                  <p class="card-text">{{item.description}}</p>
+                </div>
+                <div class="px-2">
+                    <h3>{{item.productprice}}</h3>
+                </div>
+                <div class="px-2 mt-3 mb-1"> <button class="btn btn-primary px-3">Add to Wishlist</button> <button class="btn btn-outline-primary px-3 mx-1" (click)="addCart(item)">Add to cart</button> </div>
+              </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+
