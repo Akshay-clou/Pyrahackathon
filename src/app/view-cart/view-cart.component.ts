@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
-import { Router } from '@angular/router';
+import { Router,Route } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-view-cart',
   templateUrl: './view-cart.component.html',
@@ -12,7 +13,7 @@ export class ViewCartComponent implements OnInit {
   count=1;
   viewcartarray:any;
   subtotal;
-  constructor(private http:HttpClient, private router: Router,) { 
+  constructor(private http:HttpClient, private router: Router) { 
 
   }
   ngOnInit(): void {
@@ -48,6 +49,7 @@ delete(prodid){
   var elementPos = this.viewcartarray.map(function(x) {return x.id; }).indexOf(prodid);
   console.log(elementPos);
   this.viewcartarray.splice(elementPos,1);
+  this.subtotal=this.viewcartarray.reduce((sum,data)=>{ return parseInt(sum)+parseInt(data.total) },0)
   JSON.stringify(localStorage.setItem('cartItems',JSON.stringify(this.viewcartarray)))
   environment
   .swalalert("success", "Deleted from cart")
@@ -58,14 +60,17 @@ delete(prodid){
   });
 }
 checkout(){
+ 
 localStorage.setItem('viewcartitem',JSON.stringify(this.viewcartarray)   )
   localStorage.setItem('viewcarttotal',JSON.stringify(this.subtotal  ) )
   environment
   .swalalert("success", "")
-  .then((value) => {
-    if (value) {
-      this.router.navigate(["address"]);
-    }
-  });
+  this.router.navigateByUrl('address');
+  // .then((value) => {
+  //   // this.router.navigateByUrl('/address');
+  //   if (value) {
+  //     // this.router.navigateByUrl("address");
+  //   }
+  // });
 }
 }

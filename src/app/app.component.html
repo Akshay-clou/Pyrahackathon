@@ -14,7 +14,8 @@
         </li>
       
         <li class=" px-3">
-          <a class="nav-link" routerLink="/view-cart"> <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>  &nbsp; Cart</a>
+          <a class="nav-link" routerLink="/view-cart"> 
+            <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>   Cart&nbsp;<span *ngIf="count>0" class="badge bg-secondary"> {{count}}</span></a>
         </li>
         <li class=" px-3">
           <a class="nav-link " routerLink="/address"><i class="fa fa-address-book fa-lg" aria-hidden="true"></i>&nbsp; Address</a>

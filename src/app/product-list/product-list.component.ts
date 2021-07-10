@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 import { Router } from '@angular/router';
+import { DataService } from '../data.service';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -16,7 +17,7 @@ productList1:any[]=[]
 cartItems:any[]=[];
 searchText:any;
 
-  constructor(private http:HttpClient, private router: Router,) { 
+  constructor(private http:HttpClient,private data: DataService ,private router:Router) { 
 
   }
 
@@ -58,14 +59,51 @@ searchText:any;
   }
 
   categoryFilter(value){
-     this.getProductList();
-     console.log('filter',value);
-     if(value>1){
-      this.productList= this.productList.filter(data=>{
-        return data.category==value;
-      });
-     }
+    this.getAfterFilterProductList(()=>{
+      if(value>1){
+        this.productList= this.productList.filter(data=>{
+          return data.category==value;
+        });
+        console.log('after Filter***',this.productList)
+       }
+    });
+     
   }
+  getAfterFilterProductList(callback){
+    this.http.get('http://139.59.6.161:3001/users/listProducts').subscribe(response=>{
+         console.log('ProductResponse',response)
+         let list=response['data'].map((data,index)=>{
+      if(index==0){
+      var data= data.kids.map(data=>{
+          data['category']=4;
+          return data;
+        })
+      }
+      else if(index==1){
+        var data= data.womens.map(data=>{
+          data['category']=3;
+          return data;
+        })
+      }
+      else if(index==2){
+        var data= data.mens.map(data=>{
+          data['category']=2;
+          return data;
+        })
+      }
+      return data;
+
+         });
+         console.log(list);
+         this.productList=[...list[0],...list[1],...list[2]]
+         callback();
+         console.log(this.productList);
+    },
+    err=>{
+
+    })
+  }
+
 
   addCart(item){
     if(!this.cartItems.includes(item))
@@ -80,6 +118,7 @@ searchText:any;
     });
     localStorage.setItem('cartItems',JSON.stringify(this.cartItems)
     )
+this.data.changeCount(this.cartItems.length)
     
   }
 

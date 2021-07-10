@@ -8,8 +8,9 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ViewCartComponent } from './view-cart/view-cart.component';
 
 const routes: Routes = [
-
-  {path:'',component:ProductListComponent},
+{  path: '',
+redirectTo: 'productlist',pathMatch: 'full',},
+  {path:'productlist',component:ProductListComponent},
   {path:'view-cart',component:ViewCartComponent},
   {path:'order-summary',component:OrderSummaryComponent},
   {path:'details',component:ProductDetailsComponent},
