@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { environment } from '../../environments/environment.prod';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -15,7 +16,7 @@ productList1:any[]=[]
 cartItems:any[]=[];
 searchText:any;
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient, private router: Router,) { 
 
   }
 
@@ -70,6 +71,13 @@ searchText:any;
     if(!this.cartItems.includes(item))
     this.cartItems.push(item);
     console.log(this.cartItems);
+    environment
+    .swalalert("success", "Added to cart")
+    .then((value) => {
+      if (value) {
+       // this.router.navigate(["teachers"]);
+      }
+    });
     localStorage.setItem('cartItems',JSON.stringify(this.cartItems)
     )
     

@@ -30,8 +30,8 @@
     flex-direction: row;
     flex-wrap: wrap;">
         <div class="col-2 mt-2" *ngFor="let item of productList| filter: searchText;let i=index;">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" [src]="item.productimage" height="250px" alt="Card image cap">
+            <div class="card" style="width: 13rem;">
+                <img class="card-img-top" [src]="item.productimage" height="220px" width="200px" alt="Card image cap">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mt-3 px-2">
                         <h4>{{item.productname}} </h4> <span class="heart"><i class="fa fa-heart"></i></span>
@@ -41,7 +41,7 @@
                 <div class="px-2">
                     <h3>{{item.productprice}}</h3>
                 </div>
-                <div class="px-2 mt-3 mb-1"> <button class="btn btn-primary px-3">Add to Wishlist</button> <button class="btn btn-outline-primary px-3 mx-1" (click)="addCart(item)">Add to cart</button> </div>
+                <div class="px-2 mt-3 mb-1"> <button class="btn btn-primary px-3"><i class="fa fa-heart-o fa-lg" aria-hidden="true"></i></button> <button class="btn btn-outline-primary px-3 mx-1" (click)="addCart(item)">Add to cart</button> </div>
               </div>
         </div>
     </div>

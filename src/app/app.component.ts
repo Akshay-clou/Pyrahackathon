@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-declare let $: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,10 +14,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
 
-    $(".nav .nav-link").on("click", function(){
-      $(".nav").find(".active").removeClass("active");
-      $(this).addClass("active");
-   });
+    
    
   }
 }
